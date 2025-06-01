@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 5000;
+
+const PORT = parseInt(process.env.PORT, 10) || 5000;
 
 app.use(cors());
 
@@ -16,5 +17,5 @@ app.get('/countries', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(` Server running on port ${PORT}`);
 });
