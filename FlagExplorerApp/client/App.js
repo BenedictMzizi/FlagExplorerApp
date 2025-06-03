@@ -26,7 +26,6 @@ function App() {
     return <p style={{ color: 'red', textAlign: 'center', marginTop: '2rem' }}>{error}</p>;
   }
 
-  // Filtered list based on search query
   const filteredCountries = countries.filter((country) =>
     country.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
