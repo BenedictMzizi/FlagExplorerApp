@@ -4,8 +4,8 @@
     gridTemplateColumns: 'repeat(3, 1fr)',
     gap: '1rem',
     padding: '1rem',
-    maxHeight: '600px', // adjust as needed
-    overflowY: 'auto',
+    maxHeight: '600px', // Limit height for vertical scrolling
+    overflowY: 'auto',  // Enable vertical scroll
     border: '1px solid #ddd',
     borderRadius: '8px'
   }}
