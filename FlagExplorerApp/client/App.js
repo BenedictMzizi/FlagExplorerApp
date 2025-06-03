@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function App() {
   const [countries, setCountries] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -17,7 +18,7 @@ function App() {
   }, []);
 
   if (loading) {
-    return <p style={{ textAlign: 'center', marginTop: '2rem' }}> ...Loading countries...</p>;
+    return <p style={{ textAlign: 'center', marginTop: '2rem' }}>⏳ ...Loading countries...</p>;
   }
 
   if (error) {
@@ -25,14 +26,36 @@ function App() {
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem', padding: '1rem' }}>
-      {countries.map((country, i) => (
-        <div key={country.name || i} style={{ border: '1px solid #ccc', padding: '1rem', borderRadius: '8px' }}>
-          <p style={{ fontSize: '3rem' }}>{country.flag || '🏳️'}</p>
-          <p>{country.name || 'Unknown Country'}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <input
+        type="text"
+        placeholder="Search countries..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        style={{
+          margin: '1rem auto',
+          display: 'block',
+          padding: '0.5rem 1rem',
+          width: '300px',
+          fontSize: '1rem',
+          borderRadius: '8px',
+          border: '1px solid #ccc'
+        }}
+      />
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1rem', padding: '1rem' }}>
+        {countries
+          .filter((country) =>
+            country.name.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+          .map((country, i) => (
+            <div key={country.name || i} style={{ border: '1px solid #ccc', padding: '1rem', borderRadius: '8px' }}>
+              <p style={{ fontSize: '3rem' }}>{country.flag || '🏳️'}</p>
+              <p>{country.name || 'Unknown Country'}</p>
+            </div>
+          ))}
+      </div>
+    </>
   );
 }
 
