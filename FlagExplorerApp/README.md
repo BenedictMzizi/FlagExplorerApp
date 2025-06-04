@@ -1,6 +1,6 @@
 #  Flag Explorer App
 
-webApp that displays country flags and names using a REST API.
+webApp that displays country flags, you click on it you see the name, population size, amd Capital. done using using a REST API.
 
 ## Tech Used
 - React (Frontend)
@@ -16,7 +16,7 @@ flag-explorer/
 └── .github/workflows/deploy.yml
 ```
 
-## 🚀 Deployment
+##  Deployment
 
 ### Backend:
 - Deployed on [Render]
