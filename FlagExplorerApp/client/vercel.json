@@ -11,7 +11,7 @@
   ],
   "routes": [
     {
-      "client": "/(.*)",
+      "src": "/(.*)",
       "dest": "/index.html"
     }
   ]
