@@ -6,7 +6,9 @@ function App() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
+    const API = process.env.REACT_APP_API_URL || "https://flagexplorerapp.onrender.com";
+
+fetch(`${API}/countries`)
       .then(res => res.json())
       .then(data =>
         setCountries(
