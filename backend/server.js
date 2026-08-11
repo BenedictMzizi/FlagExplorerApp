@@ -9,7 +9,7 @@ app.use(cors());
 app.get("/countries", async (req, res) => {
   try {
     const response = await axios.get(
-  "https://restcountries.com/api/v1/all"
+  "https://restcountries.francocarballar.com/api/v3.1/all?fields=name,flags,capital,region,population"
 );
 
     console.log("Type:", typeof response.data);
