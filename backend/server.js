@@ -14,29 +14,15 @@ app.get("/countries", async (req, res) => {
 
     console.log("Type:", typeof response.data);
     console.log("Is Array:", Array.isArray(response.data));
-    console.log(response.data);
+    console.log("Response:", response.data);
 
-    res.json(response.data);
+    // Return the raw API response for debugging
+    return res.json(response.data);
+
   } catch (err) {
     console.error(err);
-    res.status(500).json(err.message);
-  }
-});
-
-    const countries = response.data.map((c) => ({
-      name: c.name.common,
-      flag: c.flags?.png,
-      capital: c.capital?.[0] || "N/A",
-      region: c.region,
-      population: c.population,
-    }));
-
-    res.json(countries);
-  } catch (err) {
-    console.error(err.response?.data || err.message);
-
-    res.status(500).json({
-      error: err.message,
+    return res.status(500).json({
+      error: err.message
     });
   }
 });
