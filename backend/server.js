@@ -20,11 +20,17 @@ app.get("/countries", async (req, res) => {
     return res.json(response.data);
 
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({
-      error: err.message
-    });
-  }
+  console.error("===== ERROR =====");
+  console.error(err.message);
+  console.error(err.response?.status);
+  console.error(err.response?.data);
+  console.error("=================");
+
+  res.status(500).json({
+    error: err.message,
+    details: err.response?.data || null,
+  });
+}
 });
 
 const PORT = process.env.PORT || 5000;
