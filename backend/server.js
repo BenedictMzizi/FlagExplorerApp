@@ -1,5 +1,5 @@
 const express = require("express");
-const cors =require("cors");
+const cors = require("cors");
 const axios = require("axios");
 
 const app = express();
@@ -12,17 +12,21 @@ app.get("/countries", async (req, res) => {
       "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region"
     );
 
-    const countries = response.data.map(c => ({
+    const countries = response.data.map((c) => ({
       name: c.name.common,
       flag: c.flags?.png,
       capital: c.capital?.[0] || "N/A",
       region: c.region,
-      population: c.population
+      population: c.population,
     }));
 
     res.json(countries);
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch countries" });
+    console.error(err.response?.data || err.message);
+
+    res.status(500).json({
+      error: err.message,
+    });
   }
 });
 
