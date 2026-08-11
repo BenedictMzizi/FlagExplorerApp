@@ -9,28 +9,36 @@ app.use(cors());
 app.get("/countries", async (req, res) => {
   try {
     const response = await axios.get(
-  "https://restcountries.francocarballar.com/api/v3.1/all?fields=name,flags,capital,region,population"
-);
+      "https://api.restcountries.com/countries/v5",
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.RESTCOUNTRIES_API_KEY}`,
+        },
+        params: {
+          response_fields:
+            "names,flag,capitals,region,population",
+        },
+      }
+    );
 
-    console.log("Type:", typeof response.data);
-    console.log("Is Array:", Array.isArray(response.data));
-    console.log("Response:", response.data);
+    const countries = response.data.data.objects.map((country) => ({
+      name: country.names?.common || "Unknown",
+      flag: country.flag?.emoji || "",
+      flagPng: country.flag?.url_png || "",
+      capital: country.capitals?.[0]?.name || "N/A",
+      region: country.region || "Unknown",
+      population: country.population || 0,
+    }));
 
-    // Return the raw API response for debugging
-    return res.json(response.data);
-
+    res.json(countries);
   } catch (err) {
-  console.error("===== ERROR =====");
-  console.error(err.message);
-  console.error(err.response?.status);
-  console.error(err.response?.data);
-  console.error("=================");
+    console.error(err.response?.data || err.message);
 
-  res.status(500).json({
-    error: err.message,
-    details: err.response?.data || null,
-  });
-}
+    res.status(500).json({
+      error: err.message,
+      details: err.response?.data || null,
+    });
+  }
 });
 
 const PORT = process.env.PORT || 5000;
