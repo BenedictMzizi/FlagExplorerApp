@@ -1,38 +1,80 @@
-.App {
+.container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 30px;
+}
+
+.title {
   text-align: center;
+  margin-bottom: 30px;
+  color: #0d6efd;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.search {
+  display: block;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto 30px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.1);
+  padding: 20px;
+  text-align: center;
+  transition: .2s;
 }
 
-.App-link {
-  color: #61dafb;
+.card:hover {
+  transform: translateY(-5px);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.flag {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.country {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.region {
+  color: #666;
+  margin-top: 6px;
+}
+
+.population {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.capital {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 22px;
+}
+
+.error {
+  color: red;
 }
