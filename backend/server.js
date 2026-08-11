@@ -9,8 +9,8 @@ app.use(cors());
 app.get("/countries", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region"
-    );
+  "https://restcountries.com/api/v1/all"
+);
 
     console.log("Type:", typeof response.data);
     console.log("Is Array:", Array.isArray(response.data));
